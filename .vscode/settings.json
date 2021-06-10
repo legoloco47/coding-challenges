@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "queue": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp",
+        "iostream": "cpp"
+    }
+}
