@@ -31,4 +31,4 @@
 *.out
 *.app
 
-Data Structures/*/*_com*
+#Data Structures/*/*_com*
