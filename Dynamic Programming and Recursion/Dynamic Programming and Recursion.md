@@ -1,3 +1,4 @@
+##### Author: Helen Edelson
 # Recursive Solutions and DP
 Recusrive solution—built off solutions to subproblems
 * i.e. f(n) is found using solution to f(n-1)

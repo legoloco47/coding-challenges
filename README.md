@@ -2,7 +2,7 @@
 # coding-challenges
 Coding challenges
 
-This is a complication of the material i have used to prepare for coding challenges.
+This is a compilation of the material i have used to prepare for coding challenges.
 
 This repository is broken into sections
 1. C++ overview
