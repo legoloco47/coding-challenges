@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <map>
 // Start typing here
+// This was a coding challenge for Bloomberg
 /*
 A Sorted Linked List is a singly linked list where elements are inserted in ascending order. Design the sorted linked list and implement the insert and print member methods. For the purposes of this question, we are only inserting **unique integer values */
 using namespace std;
