@@ -1,4 +1,24 @@
 /*
+QUEUEU
+FIFO-- first in first out (line of people)
+
+Ues:
+- anytime scheduling based on 1st come 1st serve
+    -CPU scheduling, disk scheduling, buffers, pipes
+- Used for BFS
+
+Insert O(1)
+Delete O(1)
+Access worst case O(n) 
+
+
+
+
+
+
+*/
+/*
+
     This is taken from:
         https://www.cplusplus.com/reference/queue/
 

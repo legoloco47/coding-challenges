@@ -16,7 +16,9 @@ using namespace std;
 
 enum DPAlgorithms {recursive, memoization, tabular, clever};
 
-/* O(n^2) */
+/* 
+Recursive solution  O(n^2) 
+*/
 long fibonacci_recursive(int n) {
     if (n < 2) return n;
     return fibonacci_recursive(n-1) + fibonacci_recursive(n-2);

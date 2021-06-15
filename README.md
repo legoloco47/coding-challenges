@@ -3,6 +3,14 @@ Coding challenges
 
 This is a complication of the material i have used to prepare for coding challenges.
 
+This repository is broken into sections
+1. C++ overview
+2. Data Structures
+3. Dynamic Programming
+4. Alogrithms (coming soon)
+5. Staging area for questions that are waiting to be sorted
+
+
 
 It is organized into the basic topics used in coding interviews:
 1. C++ topics
@@ -25,9 +33,54 @@ It is organized into the basic topics used in coding interviews:
 
 
 
+For the purpose of interview studying
+
+* Data Structures
+* Alogrithms
+* Big O Notation
+* C++ Fundamentals
+    * 
+
+
+Algorithms
+* BFS, DFS
+* Traversals
+* Recursion
+* Binary earch
+
+Sort
+* insertion, selection, merge sort
+* quicksort, count sort, heap sort
+
+Cracking the code interview topics:
+0. Big O Notation
+1. Arrays and strings
+2. Linked Lists
+3. Stacks and Queues
+4. Trees and Graphs
+5. Bit Manipulation
+6. Math and Logic puzzles
+7. Object Oriented Design
+8. Recursion and DP
+9. System design and scalability
+10. Sorting and Searching
+11. Testing
+12. C and C++
+16. Moderate problems
+17. Hard problems
+XI. Advanced Topics
+
+Basic Core questions
+* heaps vs stack
+* alias vs pointers
+* classes and structs
+* char *s
+
+
 
 
 
 
 Interviews:
+
 
