@@ -1,14 +1,16 @@
-I. Public vs private vs protected
+##### Author: Helen Edelson
+
+# Public vs private vs protected
 * Public—members of class A are accessible for all and everyone
 * Protected—members of class A are not accessible outside of A’s code. But it is accessible from the code of any class derviced from A
 * Private—memebrs of a ckass A are not accessible outside of A’s code or from the code of any class derviced from A
 
-Choosing between protected or private?
+### Choosing between protected or private?
 * How much trust do you have in the programmer of the derived class?
 * By default assume derviced classes cannot be trusted -> use private
 
 Protected—child classes can access the inherited protected data members of base class
-
+```
 class Parent {
      protected: 
 	     int id_protected;
@@ -42,8 +44,9 @@ int main() {
 	Circle obj1;
 	Obj1.computeArea(2);
 }
+```
 
-
+```
 class Circle {
 private: double radius;
 public:
@@ -52,7 +55,7 @@ public:
         return radius*3.14* radius;
     }
 };
-
+```
 
 # Virtual Function, Abstract Class
 Virtual function—redefined in derived (child) classes
@@ -76,24 +79,24 @@ using namespace std;
 
 //base class. Will provide interface framework 
 class Shape {
-protected: int width, height;
-public:
-virtual int getArea() = 0;	//pure virtual function
-void setWidth(int w){width = w;}
-void setHeight(int h){height = h;}
+    protected: int width, height;
+    public:
+    virtual int getArea() = 0;	//pure virtual function
+    void setWidth(int w){width = w;}
+    void setHeight(int h){height = h;}
 };
 class Rectangle : public Shape {
-public: int getArea() {return width*height; }
+    public: int getArea() {return width*height; }
 };
 class Triangle : public Shape {
-public: int getArea() {return ½*width*height; }
+    public: int getArea() {return ½*width*height; }
 };
 int main(){
-Rectangle rect;
-Triangle tri;
-rect.setWidth(5);
-rect.setHeight(7);
-rect.getArea();
+    Rectangle rect;
+    Triangle tri;
+    rect.setWidth(5);
+    rect.setHeight(7);
+    rect.getArea();
 }
 ```
 
@@ -251,52 +254,305 @@ st3.size();         // 10
 * Dynamic memory allocation
 * Every variable is a memory location
 * Every memory location has an address that can be retrieved via '&' operator
-* **Pointer** 
-  * variable whose value is the address of another variable
-  * type * varname;
-    * actual type is hex value
-    * access the value at the address of the pointer via *
-* 
+## **Pointer** 
+* Variable whose value is the address of another variable
+* Type * varname;
+  * Actual type is hex value
+  * Access the value at the address of the pointer via *ptr
 
-
-
-
+Assign NULL to ptr not used
 ```
-o
+int *ip = NULL;         // *ip created
+cout<< ip ;             //  0
+cout<< *ip ;            //  throws error!
+
+if (ip) { ... }         // To avoid null pointer access
+
+int var = 20;
+int *ptr;
+ptr = &var;             // Set pointer to address of variable var
+cout<< *ip << endl;     // 20
 ```
+## Pointer Arithmetic
+++, --, +, -
 
-
-
-
-
-
+### Incrementing
 ```
-o
-```
-
-
-
-
-
-
-
-```
-o
-```
-
-
-
-
-
-
-
-```
-o
+int var[] = {1, 2, 3};
+int *p = NULL;
+p = var;        // works because arrays are pointers to memory
+for (int i = 0; i < 3; i++) {
+    cout<< *p << endl;
+    p++;        // increment the pointer ex: 1000, 1004 (int memory addres)
+}
+// Output: 1, 2, 3
 ```
 
+### Decrementing
+```
+int var[] = {1, 2, 3};
+int *p = NULL;
+p = &var[2];        // size -1
+for (int i = 0; i < 3; i++) {
+    cout<< *p << endl;
+    p--;        // decrement the pointer ex: 1000, 996 (int memory addres)
+}
+
+// Output: 3, 2, 1
+```
+### Pointer Comparison
+```
+int var[] = {1, 2, 3};
+int *ptr = NULL;
+ptr = var;
+while (ptr <= &var[size - 1]) {
+    cout<< *ptr << endl;
+    ptr++;
+}
+```
+### Pointers and Arrays
+* Can use pointer to assign a value to an array
+```
+int var[] = {1, 2, 3};
+int *ptr = NULL;
+p = var;
+
+*(var + 0)  // 1
+*(var + 1)  // 2
+*(var + 2)  // 3
+
+correct:    *var = 0;
+incorrect:  var++;
+```
+* BUT Pointers and arrays are NOT interchangeable 
+
+### Ararys of pointers
+```
+#include <iostream>
+using namespace std;
+const int sz = 3;
+
+int main() {
+    int var[sz] = {10,100,200};
+    int *ptr[sz];   //  declaration of an array of integer pointers
+
+    for (int i = 0; i < sz; i++) {
+        ptr[i] = &var[i];       // assign address of integer
+    }
+
+    for (int i = 0; i < sz; i++) {
+        cout<<*ptr[i];       // 10, 100, 200
+    }
+
+    // Example 2:
+    char * names[sz] = {"name A", "name B", "name C"};
+    for (int i = 0; i < sz; i ++) {
+        cout << *(names + i) << endl;       // name A, name B, name C
+    }
+}
+```
+
+### Pointer to Pointer
+``` 
+ pointer      pointer     variable 
+[Address] -> [Address] -> [value]
+
+int ** var;
+
+int main() {
+    int var;
+    int *ptr;
+    int **pptr;
+    var = 3000;
+    ptr = &var;
+    pptr = &ptr;
+    cout << var << endl;        // 3000
+    cout << *ptr << endl;       // 3000
+    cout << **pptr << endl;     // 3000
+}
+```
+### Passing Pointers to Functions
+* This allows you to change the value inside the function and it reflects back in the calling function
+```
+#include <iostream>
+#include <ctime>
+using namespace std;
+void getSeconds(unsigned long *ptr) {
+    // Get current # of seconds;
+    *ptr = time(NULL);
+}
+int main() {
+    unsinged long sec;
+    getSeconds(&sec);
+    cout << sec << endl;
+}
+```
+* Function can accept array or pointer
+
+```
+int myFunc(int * arr, int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i ++) {
+        sum += arr[i] << endl; 
+    }
+    return sum;
+}
+
+int main() {
+    int nums[5] = {1,2,3,4,5};
+    int a = myFunc(nums, 5);
+}
+```
+### Return Pointers from Functions
+```
+int * myFunc(){
+    static int arr[5];
+    for (int i = 0; i < 5; i++) {
+        arr[i] = rand();        // Not how rand works, but for ex sake
+    }
+    return arr;
+}
+
+int main() {
+    int *p;
+    p = myFunc();
+    for (int i = 0; i < 5; i++) {
+        cout << *(p + i) << endl;
+    }
+}
+
+```
+
+# References vs Pointers
+* **Reference Variable**--alias
+  * Another name for already existing variable
+  * once initialized, references or var name can be used to refer to variable
+
+### Difference between references and pointers
+* References cannot be NULL
+  * must connect to legitimate piece of storage
+* Once reference is initialized, it cannot be changed to refer to another object. 
+  * Pointers can be pointed to another object at any time
+* Reference must be initalized on creation
+
+### Creating Reference
+```
+int i = 17;
+int &r = i;        // Read as: "r is an integer reference initialized to i"
+
+double d = 4.3;
+double &s = d;     // Read as: "s is a double reference initialized to d"
+
+cout << i << r << d << s << endl;
+//     17   17   4.3  4.3
+```
+### Passing parameter by reference
+* Call by reference using pointers (covered earlier)
+```
+int a = 100;
+int b = 200;
+swap(a,b);
+
+void swap(int & x, int &y) {
+    int temp = x;
+    x = y;
+    y = temp;
+}
+```
+### Returning Values by Reference
+* References can be easier to read than pointers
+* C++ function can return a reference like it can a pointer
+  * returns an implicit pointer === reference to its return value
+* **NOTE**
+  * Cannot return reference to object that has gone out of scope
+```
+int & func() {
+    int q;          // do NOT return "q" // compile time error
+    static int x;   
+    return x;       // Safe, x lives outside scope
+}
+```
+
+```
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+double vals[] = {10.1, 12.6, 33.1, 24.1, 50.0};
+
+double & setVals(int i) {
+    return vals[i];
+}
+
+int main() {
+    for (int i = 0; i < 5; i++) {
+        cout << vals << ", ";
+    }
+    // Output: 10.1, 12.6, 33.1, 24.1, 50.0
+
+    setVals(1) = 20.0; 
+    setVals(3) = 3.3;
+    setVals(0) = 0.01;
+
+    for (int i = 0; i < 5; i++) {
+        cout << vals << ", ";
+    }
+    // Output: 0.01, 20.0, 33.1, 3.3, 50.0
+
+}
+```
+# Structs
+* Allow you to define variables that combine several different kinds of data items
+
+```
+struct [struct tag] {
+    member definition;  // ex int i;
+    member definition;
+    ...
+} [one or more structure variables];
+```
+* A struct defines a new data type
+* [structure tag] - optional
+### To access a struct member
+* Use "." operator
 
 
 
+# to be continued....
+
+# Remaining topics to cover
+
+### Pointers to Structs
+
+### Structs vs Classes (C++)
+
+
+# "typedef" keyword
+### typedef vs const
+
+# Classes and Objects
+## Constructors
+### Initialization Lists
+### Copy Constructor
+## Deconstructors
+## Friend Function
+## Inline Function
+## "this" pointer
+### Pointer to C++ class
+### Static Members of a Class
+# Stack vs Heap
+### Stack Allocation
+### Heap Allocation
+### Types of Memory Allocation
+### Arrays in the Heap
+# Inheritence (Polymorphism) classes
+### Static Resolution
+### Derived Access Specifier
+
+## Multiple Inheritance 
+
+# Overload Operator
+## Overload "+" operator
 
 
 
