@@ -191,6 +191,110 @@ int main() {
 }
 ```
 
+# C++ Strings
+* 2 Types of strings in C++
+  * C style character strings
+  * Standard C++ string class type
+
+## C Style Character Strings
+* 1D array of chars ending in '\0'
+* null terminated strings contain characters of string followed by null
+* size of char array containing the string is 1+ string length
+
+```
+                  1    2    3    4    5     6
+char greet[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
+```
+or 
+```
+char greet = "Hello";
+```
+
+```
+                 0  1  2  3  4  5
+Both strings:   [H][e][l][l][o][\0];
+```
+
+## C++ functions on NULL-terminated strings
+(char arrays)
+
+```
+#include <cstring>
+strcpy(s1, s2); // Copy s2 into s1
+strcat(s1, s2); // concat s2 onto s1
+strlen(s1)      // length s1
+strcmp(s1, s2); // compare s1 to s2, 0 if s1==s2
+                                    <0 if s1 < s2
+                                    >0 if s1 > s2
+strchr(s1, ch); // Returns pointer to 1st occurance of ch in s1
+strstr(s1, s2); // Returns pointer to 1st occurnace of s2 in s1
+
+char st1[10] = "Hello";
+char st2[10] = "World";
+char st3[10];
+
+strcpy(s3, s1);     // Hello
+strcat(st1, st2);   // HelloWorld
+strlen(st2);        // World --> 5
+```
+```
+#include <string>
+string st1 = "Hello";
+string st2 = "World";
+string st3;
+
+st3 = st1 + st2;    // HelloWorld
+st3.size();         // 10
+```
+
+# C++ Pointers
+* Dynamic memory allocation
+* Every variable is a memory location
+* Every memory location has an address that can be retrieved via '&' operator
+* **Pointer** 
+  * variable whose value is the address of another variable
+  * type * varname;
+    * actual type is hex value
+    * access the value at the address of the pointer via *
+* 
+
+
+
+
+```
+o
+```
+
+
+
+
+
+
+```
+o
+```
+
+
+
+
+
+
+
+```
+o
+```
+
+
+
+
+
+
+
+```
+o
+```
+
+
 
 
 
